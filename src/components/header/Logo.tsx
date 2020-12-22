@@ -4,7 +4,7 @@ import styled from "styled-components";
 import mrLogo from "../../assets/main-logo-mr.svg";
 
 export const Logo: FC = () => {
-  const [isMouseOver, setIsMouseOver] = useState(false);
+  const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
 
   return (
     <Wrapper
@@ -29,6 +29,9 @@ const StyledLink = styled(Link)`
   display: flex;
   text-decoration: none;
   color: #e6e6e6;
+  &:focus {
+    outline-color: #ff4848;
+  }
 
   p {
     font-family: "Inter", sans-serif;

@@ -15,4 +15,8 @@ const Button = styled.button`
   color: #fff;
   font-weight: 700;
   cursor: pointer;
+
+  &:focus {
+    outline-color: #ff4848;
+  }
 `;

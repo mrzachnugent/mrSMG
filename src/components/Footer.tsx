@@ -23,6 +23,9 @@ const Wrapper = styled.div`
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: #ffffff80;
-
   font-size: 13px;
+
+  &:focus {
+    outline-color: #ff4848;
+  }
 `;

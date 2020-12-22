@@ -1,14 +1,32 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { PageWrapper, redGradient } from "../../GlobalStyle";
 import styled from "styled-components";
 import stillSphere from "../../assets/gifs/spin-ball-still-comp.gif";
+import bounceSphere from "../../assets/gifs/spin-ball-bounce-comp.gif";
 import dice from "../../assets/dice-active.svg";
+import { Loader } from "../Loader";
+import { useHistory } from "react-router-dom";
 
 const Homepage: FC = () => {
+  const history = useHistory();
+  const [isClicked, setIsClicked] = useState<boolean>(false);
+
+  const handleLaunch = () => {
+    setIsClicked(true);
+    setTimeout(() => {
+      history.push("/results");
+    }, 2100);
+  };
+
   return (
     <Wrapper>
+      {isClicked && <Loader />}
       <Main>
-        <SpinBall src={stillSphere} alt="Spinning sphere" />
+        {!isClicked ? (
+          <SpinBall src={stillSphere} alt="Spinning sphere" />
+        ) : (
+          <SpinBall src={bounceSphere} alt="Spinning sphere that bounces" />
+        )}
         <LeftContainer>
           <TextContainer>
             <Title>
@@ -26,7 +44,10 @@ const Homepage: FC = () => {
               <p>Get inspired</p>
             </Inspired>
           </TextContainer>
-          <Button>Launch</Button>
+
+          <Button onClick={handleLaunch}>
+            <p>Launch</p>
+          </Button>
         </LeftContainer>
       </Main>
     </Wrapper>
@@ -156,7 +177,15 @@ const Button = styled.button`
   border-radius: 4px;
   box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
-  color: rgba(255, 255, 255, 0.85);
+  color: #fff;
+
+  &:focus {
+    outline-color: #ff4848;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
 
   @media (min-width: 600px) {
     width: calc(1.5 * 160px);
