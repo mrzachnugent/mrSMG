@@ -9,17 +9,25 @@ const Homepage: FC = () => {
     <Wrapper>
       <Main>
         <SpinBall src={stillSphere} alt="Spinning sphere" />
-        <Title>
-          <span>S</span>MG
-        </Title>
-        <Inspired>
-          <RedDice
-            src={dice}
-            alt="A dice with question marks instead of numbers."
-          />
-          <p>Get inspired</p>
-        </Inspired>
-        <Button>Launch</Button>
+        <LeftContainer>
+          <TextContainer>
+            <Title>
+              <span>S</span>MG
+            </Title>
+            <LongText>
+              <span>S</span>ong <span>M</span>apping <span>G</span>enerator
+            </LongText>
+
+            <Inspired>
+              <RedDice
+                src={dice}
+                alt="A dice with question marks instead of numbers."
+              />
+              <p>Get inspired</p>
+            </Inspired>
+          </TextContainer>
+          <Button>Launch</Button>
+        </LeftContainer>
       </Main>
     </Wrapper>
   );
@@ -28,19 +36,63 @@ const Homepage: FC = () => {
 const Wrapper = styled(PageWrapper)`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+
+  @media (min-height: 780px) {
+    justify-content: center;
+  }
 `;
 
 const Main = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (min-width: 1000px) {
+    flex-direction: row-reverse;
+  }
 `;
 
 const SpinBall = styled.img`
   width: 225px;
   filter: drop-shadow(0px 30px 10px rgba(0, 0, 0, 0.35));
+
+  @media (min-width: 330px) {
+    width: 280px;
+  }
+  @media (min-width: 365px) {
+    width: 330px;
+  }
+  @media (min-width: 1000px) {
+    width: 450px;
+  }
+  @media (min-width: 1300px) {
+    width: 550px;
+  }
+`;
+
+const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (min-width: 600px) {
+    flex-direction: column-reverse;
+  }
+  @media (min-width: 1000px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+`;
+const LeftContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (min-width: 1000px) {
+    align-items: flex-start;
+  }
+  @media (min-width: 1300px) {
+    padding-left: 100px;
+  }
 `;
 
 const Title = styled.h1`
@@ -55,6 +107,24 @@ const Title = styled.h1`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+  @media (min-width: 600px) {
+    display: none;
+  }
+`;
+
+const LongText = styled(Title)`
+  display: none;
+  @media (min-width: 600px) {
+    display: block;
+    max-width: 600px;
+    text-align: center;
+    padding-bottom: 50px;
+  }
+  @media (min-width: 1000px) {
+    text-align: left;
+    max-width: 400px;
+    padding-bottom: 15px;
+  }
 `;
 
 const Inspired = styled.div`
@@ -65,6 +135,9 @@ const Inspired = styled.div`
   margin-bottom: 36px;
   text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.35);
   font-weight: 400;
+  @media (min-width: 1000px) {
+    margin-bottom: 50px;
+  }
 `;
 
 const RedDice = styled.img`
@@ -84,6 +157,12 @@ const Button = styled.button`
   box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   color: rgba(255, 255, 255, 0.85);
+
+  @media (min-width: 600px) {
+    width: calc(1.5 * 160px);
+    height: calc(1.5 * 36px);
+    font-size: 23px;
+  }
 `;
 
 export default Homepage;
