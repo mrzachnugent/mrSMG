@@ -14,6 +14,15 @@ export const reverseBlueLinGradient =
 export const redGradient =
   "linear-gradient( 261.27deg, #db0000 -17.12%, #cf0101 60.94%, #321212 134.27%, #321212 134.27%)";
 
+export const colors = {
+  intro: "#DF5353",
+  verse: "#3CA6C7",
+  preChorus: "#DEEC86",
+  chorus: "#754BD0",
+  bridge: "#56B435",
+  outro: "#D7479D",
+};
+
 export const GlobalStyle = createGlobalStyle`
 * {
     margin: 0;

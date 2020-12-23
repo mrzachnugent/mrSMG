@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from "react";
 import {
   PageWrapper,
   blueLinGradient,
+  redGradient,
   reverseBlueLinGradient,
 } from "../../GlobalStyle";
 import { FiMapPin, FiKey } from "react-icons/fi";
@@ -10,6 +11,7 @@ import { FaRulerVertical } from "react-icons/fa";
 import styled from "styled-components";
 import { Loader } from "../Loader";
 import { Piano } from "./Piano";
+import { Structure } from "./Structure";
 
 interface Scale {
   name: string;
@@ -107,19 +109,48 @@ export const ResultsPage: FC = () => {
               </ResultText>
             </ReverseSnapshot>
           </SnapWrapper>
-          <TitleContainer style={{ paddingTop: "60px" }}>
-            <SectionTitle>
-              Scale <span>formula</span>
-            </SectionTitle>
-          </TitleContainer>
-          <p style={{ paddingTop: "15px", textAlign: "center" }}>
-            {songInfo.scale.formula.join(" - ")}
-          </p>
-          <PianoWrapper>
-            <Piano formula={songInfo.scale.formula} start={songInfo.key} />
-          </PianoWrapper>
-          <div>Structure Structure image Structure Description</div>
-          <div>Additional Info: Low end challenge</div>
+          <PianoSection>
+            <TitleContainer>
+              <SectionTitle>
+                Scale <span>formula</span>
+              </SectionTitle>
+            </TitleContainer>
+            <p style={{ paddingTop: "15px", textAlign: "center" }}>
+              {songInfo.scale.formula.join(" - ")}
+            </p>
+            <PianoWrapper>
+              <Piano formula={songInfo.scale.formula} start={songInfo.key} />
+            </PianoWrapper>
+          </PianoSection>
+          <StructureSection>
+            <TitleContainer>
+              <SectionTitle>Structure</SectionTitle>
+            </TitleContainer>
+            <Structure
+              structure={songInfo.structure}
+              bars={songInfo.bars}
+              totalBars={songInfo.totalBars}
+            />
+          </StructureSection>
+          <PianoSection>
+            <TitleContainer>
+              <SectionTitle>Challenges</SectionTitle>
+            </TitleContainer>
+            <div style={{ width: "100%", padding: "11px" }}>
+              <SingleChallenge>
+                Low end: <br />
+                <span>{songInfo.lowEnd}</span>
+              </SingleChallenge>
+              <SingleChallenge>
+                Use this instrument: <br />
+                <span>{songInfo.instrument}</span>
+              </SingleChallenge>
+              <SingleChallenge>
+                Extra challenge: <br />
+                <span>{songInfo.challenge}</span>
+              </SingleChallenge>
+            </div>
+          </PianoSection>
           <div>Save button</div>
           <GenerateButton onClick={handleTryAgain}>
             Generate New Map
@@ -158,6 +189,7 @@ const SnapWrapper = styled.div`
 `;
 
 const Snapshot = styled.div`
+  border: 1px solid #ffffff20;
   background: ${blueLinGradient};
   margin-top: 30px;
   display: flex;
@@ -175,7 +207,6 @@ const Snapshot = styled.div`
 const Main = styled.main`
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
 `;
 
 const TitleContainer = styled.div`
@@ -188,20 +219,21 @@ const TitleContainer = styled.div`
 const SectionTitle = styled.p`
   font-weight: 600;
   padding-top: 30px;
-  font-size: 18px;
+  font-size: 23px;
   position: relative;
   display: inline;
 
   &::after {
     position: absolute;
     content: "";
-    height: 2px;
-    bottom: -4px;
+    height: 3px;
+    border-radius: 3px;
+    bottom: -6px;
     margin: 0 auto;
     left: 0;
     right: 0;
     width: 50%;
-    background: #00a2ff;
+    background: #ffffff;
     transition: 0.5s;
     @media (min-width: 900px) {
       margin: 0;
@@ -243,4 +275,47 @@ const GenerateButton = styled.button`
 const PianoWrapper = styled.div`
   padding: 30px 0;
   margin: 0 auto;
+`;
+
+const PianoSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 30px auto;
+  border-radius: 15px;
+  padding-top: 30px;
+  box-shadow: 5px 7px 15px 7px rgba(0, 0, 0, 0.26),
+    3px 0px 13px -7px rgba(0, 0, 0, 0.05);
+`;
+const StructureSection = styled(PianoSection)`
+  background: ${reverseBlueLinGradient};
+`;
+
+const SingleChallenge = styled.p`
+  padding: 15px;
+  position: relative;
+  letter-spacing: 1px;
+  font-weight: 700;
+  font-size: 21px;
+
+  span {
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  &::after {
+    position: absolute;
+    content: "";
+    height: 22px;
+    border-radius: 3px;
+    left: 3px;
+    top: 20px;
+    width: 3px;
+    background: #ff0000;
+  }
+`;
+
+const ChallengesTitle = styled(SectionTitle)`
+  text-align: center;
 `;

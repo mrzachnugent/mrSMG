@@ -37,3 +37,8 @@ export const getFormulaKeys = (formula: number[], start: string) => {
   });
   return selectedKeys;
 };
+
+// export const percentageWidth = () => {
+//   return `${Math.floor()}`
+
+// }

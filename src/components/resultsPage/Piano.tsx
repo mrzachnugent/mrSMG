@@ -130,6 +130,7 @@ const WhiteKeys = styled.button`
   align-items: flex-end;
   justify-content: center;
   padding-bottom: 10px;
+  cursor: pointer;
 
   &:focus {
     outline-color: #ff4848;
@@ -141,6 +142,7 @@ const WhiteKeys = styled.button`
 
   &:disabled {
     opacity: 0.5;
+    cursor: default;
   }
 
   &:disabled:active {
@@ -160,6 +162,7 @@ const BlackKeys = styled.button`
   padding-bottom: 10px;
   border: none;
   box-shadow: inset -2px -2px 7px rgba(255, 255, 255, 0.2);
+  cursor: pointer;
 
   &:focus {
     outline-color: #ff4848;
@@ -171,6 +174,7 @@ const BlackKeys = styled.button`
 
   &:disabled {
     background: #1b1b1b;
+    cursor: default;
 
     p {
       color: #333;
