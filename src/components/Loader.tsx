@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 const svgVariants = {
-  hidden: { rotate: 40 },
+  hidden: { rotate: 90 },
   visible: {
     rotate: 0,
     transition: { duration: 1.2 },
