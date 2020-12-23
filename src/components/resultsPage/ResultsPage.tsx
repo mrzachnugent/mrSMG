@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import {
   PageWrapper,
   blueLinGradient,
-  redGradient,
+  blueGradient,
   reverseBlueLinGradient,
 } from "../../GlobalStyle";
 import { FiMapPin, FiKey } from "react-icons/fi";
@@ -12,6 +12,8 @@ import styled from "styled-components";
 import { Loader } from "../Loader";
 import { Piano } from "./Piano";
 import { Structure } from "./Structure";
+import { jsPDF } from "jspdf";
+import { MainButton } from "../MainButton";
 
 interface Scale {
   name: string;
@@ -61,6 +63,28 @@ export const ResultsPage: FC = () => {
     getData();
     console.log("done");
   }, [toggleTryAgain]);
+
+  const handlePrint = () => {
+    const printMaterial = `
+      MixReferences
+      Song Mapping Generator:
+
+      Bpm: ${songInfo?.bpm},
+      Key: ${songInfo?.key},
+      Length: ${songInfo?.length},
+      Scale: ${songInfo?.scale.name},
+      Scale formula: ${songInfo?.scale.formula},
+      Structure: ${songInfo?.structure},
+      Bars per section: ${songInfo?.bars},
+      Low-end: ${songInfo?.lowEnd},
+      Instrument: ${songInfo?.instrument},
+      Challenge: ${songInfo?.challenge}
+    `;
+    const doc = new jsPDF("landscape");
+    doc.text(printMaterial, 10, 10);
+    doc.save("mr-smg.pdf");
+  };
+
   return (
     <Wrapper>
       {isLoading && <Loader />}
@@ -132,7 +156,7 @@ export const ResultsPage: FC = () => {
               totalBars={songInfo.totalBars}
             />
           </StructureSection>
-          <PianoSection>
+          <ChallengedSection>
             <TitleContainer>
               <SectionTitle>Challenges</SectionTitle>
             </TitleContainer>
@@ -150,11 +174,13 @@ export const ResultsPage: FC = () => {
                 <span>{songInfo.challenge}</span>
               </SingleChallenge>
             </div>
-          </PianoSection>
-          <div>Save button</div>
-          <GenerateButton onClick={handleTryAgain}>
-            Generate New Map
-          </GenerateButton>
+          </ChallengedSection>
+          <ButtonsWrapper>
+            <MainButton title="Save as PDF" onClick={handlePrint} />
+            <GenerateButton onClick={handleTryAgain}>
+              Generate New Map
+            </GenerateButton>
+          </ButtonsWrapper>
         </Main>
       )}
     </Wrapper>
@@ -267,8 +293,30 @@ const ResultText = styled.p`
 `;
 
 const GenerateButton = styled.button`
+  width: 160px;
+  height: 36px;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  background: radial-gradient(50% 50% at 50% 50%, #27354b 0%, #1c232e 100%);
+  border: none;
+  border-radius: 4px;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  color: #fff;
+
   &:focus {
     outline-color: #ff4848;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  @media (min-width: 600px) {
+    width: calc(1.5 * 160px);
+    height: calc(1.5 * 36px);
+    font-size: 18px;
   }
 `;
 
@@ -316,6 +364,22 @@ const SingleChallenge = styled.p`
   }
 `;
 
-const ChallengesTitle = styled(SectionTitle)`
-  text-align: center;
+const ButtonsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 105px;
+  margin-bottom: 50px;
+
+  @media (min-width: 600px) {
+    height: 150px;
+  }
+`;
+
+const ChallengedSection = styled(PianoSection)`
+  @media (min-width: 600px) {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
 `;

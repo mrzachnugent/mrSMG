@@ -6,6 +6,7 @@ import bounceSphere from "../../assets/gifs/spin-ball-bounce-comp.gif";
 import dice from "../../assets/dice-active.svg";
 import { Loader } from "../Loader";
 import { useHistory } from "react-router-dom";
+import { MainButton } from "../MainButton";
 
 const Homepage: FC = () => {
   const history = useHistory();
@@ -45,9 +46,7 @@ const Homepage: FC = () => {
             </Inspired>
           </TextContainer>
 
-          <Button onClick={handleLaunch}>
-            <p>Launch</p>
-          </Button>
+          <MainButton title="Launch" onClick={handleLaunch} />
         </LeftContainer>
       </Main>
     </Wrapper>
@@ -164,34 +163,6 @@ const Inspired = styled.div`
 const RedDice = styled.img`
   margin-right: 11px;
   filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.35));
-`;
-
-const Button = styled.button`
-  width: 160px;
-  height: 36px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  letter-spacing: 2px;
-  background: ${redGradient};
-  border: none;
-  border-radius: 4px;
-  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  color: #fff;
-
-  &:focus {
-    outline-color: #ff4848;
-  }
-
-  &:active {
-    transform: scale(0.98);
-  }
-
-  @media (min-width: 600px) {
-    width: calc(1.5 * 160px);
-    height: calc(1.5 * 36px);
-    font-size: 23px;
-  }
 `;
 
 export default Homepage;

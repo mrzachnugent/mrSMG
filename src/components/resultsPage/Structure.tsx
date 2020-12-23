@@ -77,6 +77,9 @@ export const Structure: FC<StructureProps> = ({
       <Description>
         <div>
           <List>
+            <NamedItems style={{ textDecoration: "underline" }}>
+              Section
+            </NamedItems>
             {structure.map((struc) => {
               return <NamedItems>{struc} :</NamedItems>;
             })}
@@ -84,12 +87,15 @@ export const Structure: FC<StructureProps> = ({
         </div>
         <div>
           <List>
+            <ListItems style={{ textDecoration: "underline" }}>Bars</ListItems>
             {bars.map((num) => {
               return <ListItems>{num}</ListItems>;
             })}
           </List>
         </div>
         <List>
+          <Square />
+
           {structure.map((struc) => {
             switch (struc) {
               case "Intro":
@@ -116,6 +122,7 @@ export const Structure: FC<StructureProps> = ({
 
 const Wrapper = styled.div`
   width: 100%;
+
   padding: 0 11px;
 `;
 
@@ -142,7 +149,8 @@ const NamedItems = styled(ListItems)`
 `;
 
 const VisualStructureWrapper = styled.div`
-  margin-top: 30px;
+  margin: 30px auto 0 auto;
+  max-width: 500px;
   width: 100%;
   height: 75px;
   border-radius: 7px;
