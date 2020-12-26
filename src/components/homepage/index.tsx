@@ -8,6 +8,8 @@ import { Loader } from "../Loader";
 import { useHistory } from "react-router-dom";
 import { MainButton } from "../MainButton";
 
+import { motion } from "framer-motion";
+
 const Homepage: FC = () => {
   const history = useHistory();
   const [isClicked, setIsClicked] = useState<boolean>(false);
@@ -19,16 +21,45 @@ const Homepage: FC = () => {
     }, 2100);
   };
 
+  const variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
+  const ballVariants = {
+    start: { opacity: 0, y: 150 },
+    end: { opacity: 1, y: 0 },
+  };
+
   return (
     <Wrapper>
       {isClicked && <Loader />}
       <Main>
         {!isClicked ? (
-          <SpinBall src={stillSphere} alt="Spinning sphere" />
+          <SpinBall
+            src={stillSphere}
+            alt="Spinning sphere"
+            drag
+            dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+            variants={ballVariants}
+            initial="start"
+            animate="end"
+            transition={{
+              y: { type: "spring", stiffness: 100 },
+            }}
+          />
         ) : (
           <SpinBall src={bounceSphere} alt="Spinning sphere that bounces" />
         )}
-        <LeftContainer>
+        <LeftContainer
+          variants={variants}
+          initial="hidden"
+          animate="visible"
+          transition={{
+            delay: 0.5,
+            x: { type: "spring", stiffness: 100 },
+            default: { duration: 1.2 },
+          }}
+        >
           <TextContainer>
             <Title>
               <span>S</span>MG
@@ -73,7 +104,7 @@ const Main = styled.main`
   }
 `;
 
-const SpinBall = styled.img`
+const SpinBall = styled(motion.img)`
   width: 225px;
   filter: drop-shadow(0px 30px 10px rgba(0, 0, 0, 0.35));
 
@@ -103,7 +134,7 @@ const TextContainer = styled.div`
     align-items: flex-start;
   }
 `;
-const LeftContainer = styled.div`
+const LeftContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -162,6 +193,7 @@ const Inspired = styled.div`
 
 const RedDice = styled.img`
   margin-right: 11px;
+  z-index: -1;
   filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.35));
 `;
 

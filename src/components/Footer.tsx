@@ -1,12 +1,22 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const Footer: FC = () => {
+export interface Contact {
+  setIsContactOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isContactOpen?: boolean;
+}
+
+export const Footer: FC<Contact> = ({ setIsContactOpen }) => {
   return (
     <Wrapper>
-      <StyledLink to="/">How S.M.G. works</StyledLink>
-      <StyledLink to="/">Contact</StyledLink>
+      <StyledLink
+        href="https://github.com/mrzachnugent/ourLife"
+        target="_blank"
+      >
+        How S.M.G. works
+      </StyledLink>
+      <Button onClick={() => setIsContactOpen(true)}>Contact</Button>
     </Wrapper>
   );
 };
@@ -20,7 +30,20 @@ const Wrapper = styled.div`
   height: 40px;
 `;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled.a`
+  text-decoration: none;
+  color: #ffffff80;
+  font-size: 13px;
+
+  &:focus {
+    outline-color: #ff4848;
+  }
+`;
+
+const Button = styled.button`
+  cursor: pointer;
+  background: transparent;
+  border: none;
   text-decoration: none;
   color: #ffffff80;
   font-size: 13px;

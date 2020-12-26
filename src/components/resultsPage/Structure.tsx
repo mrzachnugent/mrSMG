@@ -25,6 +25,7 @@ export const Structure: FC<StructureProps> = ({
                   bg={colors.intro}
                   bar={bars[i]}
                   totalBars={totalBars}
+                  key={`section-${i}`}
                 />
               );
             case "Verse":
@@ -33,6 +34,7 @@ export const Structure: FC<StructureProps> = ({
                   bg={colors.verse}
                   bar={bars[i]}
                   totalBars={totalBars}
+                  key={`section-${i}`}
                 />
               );
             case "Pre-chorus":
@@ -41,6 +43,7 @@ export const Structure: FC<StructureProps> = ({
                   bg={colors.preChorus}
                   bar={bars[i]}
                   totalBars={totalBars}
+                  key={`section-${i}`}
                 />
               );
             case "Chorus":
@@ -49,6 +52,7 @@ export const Structure: FC<StructureProps> = ({
                   bg={colors.chorus}
                   bar={bars[i]}
                   totalBars={totalBars}
+                  key={`section-${i}`}
                 />
               );
             case "Bridge":
@@ -57,6 +61,7 @@ export const Structure: FC<StructureProps> = ({
                   bg={colors.bridge}
                   bar={bars[i]}
                   totalBars={totalBars}
+                  key={`section-${i}`}
                 />
               );
             case "Outro":
@@ -65,11 +70,17 @@ export const Structure: FC<StructureProps> = ({
                   bg={colors.outro}
                   bar={bars[i]}
                   totalBars={totalBars}
+                  key={`section-${i}`}
                 />
               );
             default:
               return (
-                <ColoredBar bg={"black"} bar={bars[i]} totalBars={totalBars} />
+                <ColoredBar
+                  bg={"black"}
+                  bar={bars[i]}
+                  totalBars={totalBars}
+                  key={`section-${i}`}
+                />
               );
           }
         })}
@@ -80,38 +91,79 @@ export const Structure: FC<StructureProps> = ({
             <NamedItems style={{ textDecoration: "underline" }}>
               Section
             </NamedItems>
-            {structure.map((struc) => {
-              return <NamedItems>{struc} :</NamedItems>;
+            {structure.map((struc, i) => {
+              return (
+                <NamedItems key={`structure-section-${i}`}>
+                  {struc} :
+                </NamedItems>
+              );
             })}
           </List>
         </div>
         <div>
           <List>
             <ListItems style={{ textDecoration: "underline" }}>Bars</ListItems>
-            {bars.map((num) => {
-              return <ListItems>{num}</ListItems>;
+            {bars.map((num, i) => {
+              return (
+                <ListItems key={`structure-section-bars-${i}`}>{num}</ListItems>
+              );
             })}
           </List>
         </div>
         <List>
           <Square />
 
-          {structure.map((struc) => {
+          {structure.map((struc, i) => {
             switch (struc) {
               case "Intro":
-                return <Square style={{ background: colors.intro }} />;
+                return (
+                  <Square
+                    key={`section-color-${i}`}
+                    style={{ background: colors.intro }}
+                  />
+                );
               case "Verse":
-                return <Square style={{ background: colors.verse }} />;
+                return (
+                  <Square
+                    key={`section-color-${i}`}
+                    style={{ background: colors.verse }}
+                  />
+                );
               case "Pre-chorus":
-                return <Square style={{ background: colors.preChorus }} />;
+                return (
+                  <Square
+                    key={`section-color-${i}`}
+                    style={{ background: colors.preChorus }}
+                  />
+                );
               case "Chorus":
-                return <Square style={{ background: colors.chorus }} />;
+                return (
+                  <Square
+                    key={`section-color-${i}`}
+                    style={{ background: colors.chorus }}
+                  />
+                );
               case "Bridge":
-                return <Square style={{ background: colors.bridge }} />;
+                return (
+                  <Square
+                    key={`section-color-${i}`}
+                    style={{ background: colors.bridge }}
+                  />
+                );
               case "Outro":
-                return <Square style={{ background: colors.outro }} />;
+                return (
+                  <Square
+                    key={`section-color-${i}`}
+                    style={{ background: colors.outro }}
+                  />
+                );
               default:
-                return <Square style={{ background: "black" }} />;
+                return (
+                  <Square
+                    key={`section-color-${i}`}
+                    style={{ background: "black" }}
+                  />
+                );
             }
           })}
         </List>

@@ -35,12 +35,26 @@ export const Piano: FC<GetFormulaKeysProps> = ({ formula, start }) => {
       >
         <NoteLetters>C</NoteLetters>
       </WhiteKeys>
+      <BlackKeys
+        style={{ left: "24px" }}
+        disabled={keysFormula.indexOf("C#") === -1}
+        onClick={() => handlePlay(cSharpNote)}
+      >
+        <WhiteLetter>C#</WhiteLetter>
+      </BlackKeys>
       <WhiteKeys
         disabled={keysFormula.indexOf("D") === -1}
         onClick={() => handlePlay(dNote)}
       >
         <NoteLetters>D</NoteLetters>
       </WhiteKeys>
+      <BlackKeys
+        style={{ left: "65px" }}
+        disabled={keysFormula.indexOf("D#") === -1}
+        onClick={() => handlePlay(dSharpNote)}
+      >
+        <WhiteLetter>D#</WhiteLetter>
+      </BlackKeys>
       <WhiteKeys
         disabled={keysFormula.indexOf("E") === -1}
         onClick={() => handlePlay(eNote)}
@@ -53,39 +67,6 @@ export const Piano: FC<GetFormulaKeysProps> = ({ formula, start }) => {
       >
         <NoteLetters>F</NoteLetters>
       </WhiteKeys>
-      <WhiteKeys
-        disabled={keysFormula.indexOf("G") === -1}
-        onClick={() => handlePlay(gNote)}
-      >
-        <NoteLetters>G</NoteLetters>
-      </WhiteKeys>
-      <WhiteKeys
-        disabled={keysFormula.indexOf("A") === -1}
-        onClick={() => handlePlay(aNote)}
-      >
-        <NoteLetters>A</NoteLetters>
-      </WhiteKeys>
-      <WhiteKeys
-        style={{ borderRadius: "2px 10px 10px 2px" }}
-        disabled={keysFormula.indexOf("B") === -1}
-        onClick={() => handlePlay(bNote)}
-      >
-        <NoteLetters>B</NoteLetters>
-      </WhiteKeys>
-      <BlackKeys
-        style={{ left: "24px" }}
-        disabled={keysFormula.indexOf("C#") === -1}
-        onClick={() => handlePlay(cSharpNote)}
-      >
-        <WhiteLetter>C#</WhiteLetter>
-      </BlackKeys>
-      <BlackKeys
-        style={{ left: "65px" }}
-        disabled={keysFormula.indexOf("D#") === -1}
-        onClick={() => handlePlay(dSharpNote)}
-      >
-        <WhiteLetter>D#</WhiteLetter>
-      </BlackKeys>
       <BlackKeys
         style={{ right: "106px" }}
         disabled={keysFormula.indexOf("F#") === -1}
@@ -93,6 +74,12 @@ export const Piano: FC<GetFormulaKeysProps> = ({ formula, start }) => {
       >
         <WhiteLetter>F#</WhiteLetter>
       </BlackKeys>
+      <WhiteKeys
+        disabled={keysFormula.indexOf("G") === -1}
+        onClick={() => handlePlay(gNote)}
+      >
+        <NoteLetters>G</NoteLetters>
+      </WhiteKeys>
       <BlackKeys
         style={{ right: "65px" }}
         disabled={keysFormula.indexOf("G#") === -1}
@@ -100,6 +87,12 @@ export const Piano: FC<GetFormulaKeysProps> = ({ formula, start }) => {
       >
         <WhiteLetter>G#</WhiteLetter>
       </BlackKeys>
+      <WhiteKeys
+        disabled={keysFormula.indexOf("A") === -1}
+        onClick={() => handlePlay(aNote)}
+      >
+        <NoteLetters>A</NoteLetters>
+      </WhiteKeys>
       <BlackKeys
         style={{ right: "24px" }}
         disabled={keysFormula.indexOf("A#") === -1}
@@ -107,6 +100,13 @@ export const Piano: FC<GetFormulaKeysProps> = ({ formula, start }) => {
       >
         <WhiteLetter>A#</WhiteLetter>
       </BlackKeys>
+      <WhiteKeys
+        style={{ borderRadius: "2px 10px 10px 2px" }}
+        disabled={keysFormula.indexOf("B") === -1}
+        onClick={() => handlePlay(bNote)}
+      >
+        <NoteLetters>B</NoteLetters>
+      </WhiteKeys>
     </Wrapper>
   );
 };
@@ -122,6 +122,7 @@ const Wrapper = styled.div`
 `;
 const WhiteKeys = styled.button`
   height: 100%;
+  z-index: 1;
   width: 41px;
   background: #fff;
   border: 1px solid #d9d9d9;
@@ -152,6 +153,7 @@ const WhiteKeys = styled.button`
 
 const BlackKeys = styled.button`
   position: absolute;
+  z-index: 2;
   height: 96px;
   width: 35px;
   background: #111;

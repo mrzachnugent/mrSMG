@@ -1,13 +1,14 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { Logo } from "./Logo";
 import { QuestionButton } from "./QuestionButton";
 import styled from "styled-components";
+import { Contact } from "../Footer";
 
-const Header: FC = () => {
+const Header: FC<Contact> = ({ setIsContactOpen }) => {
   return (
     <Wrapper>
       <Logo />
-      <QuestionButton />
+      <QuestionButton setIsContactOpen={setIsContactOpen} />
     </Wrapper>
   );
 };

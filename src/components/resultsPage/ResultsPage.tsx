@@ -61,7 +61,6 @@ export const ResultsPage: FC = () => {
     };
 
     getData();
-    console.log("done");
   }, [toggleTryAgain]);
 
   const handlePrint = () => {
