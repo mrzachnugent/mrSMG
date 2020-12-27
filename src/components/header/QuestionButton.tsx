@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { redGradient } from "../../GlobalStyle";
@@ -8,6 +8,26 @@ import { motion } from "framer-motion";
 
 export const QuestionButton: FC<Contact> = ({ setIsContactOpen }) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [count, setCount] = useState<number>(0);
+
+  useEffect(() => {
+    const getData = async () => {
+      const res = await fetch(
+        "https://cors-anywhere.herokuapp.com/https://mr-smg-app.herokuapp.com/generate-song-map/count",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
+      const json = await res.json();
+      setCount(json.data);
+    };
+
+    getData();
+  }, [isMenuOpen]);
 
   const handleOnContact = () => {
     setIsContactOpen(true);
@@ -44,7 +64,7 @@ export const QuestionButton: FC<Contact> = ({ setIsContactOpen }) => {
             </StyledLink>
             <StyledA
               onClick={() => setIsMenuOpen(false)}
-              href="https://github.com/mrzachnugent/ourLife"
+              href="https://github.com/mrzachnugent/mrSMG"
               target="_blank"
             >
               How it works
@@ -53,7 +73,7 @@ export const QuestionButton: FC<Contact> = ({ setIsContactOpen }) => {
             <BottomMenu>
               <CounterContainer>
                 <CounterBackground>
-                  <CounterNumber>{numberShortner(8000000)}</CounterNumber>
+                  <CounterNumber>{numberShortner(count)}</CounterNumber>
                 </CounterBackground>
                 <p>Maps generated</p>
               </CounterContainer>

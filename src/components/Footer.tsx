@@ -10,10 +10,7 @@ export interface Contact {
 export const Footer: FC<Contact> = ({ setIsContactOpen }) => {
   return (
     <Wrapper>
-      <StyledLink
-        href="https://github.com/mrzachnugent/ourLife"
-        target="_blank"
-      >
+      <StyledLink href="https://github.com/mrzachnugent/mrSMG" target="_blank">
         How S.M.G. works
       </StyledLink>
       <Button onClick={() => setIsContactOpen(true)}>Contact</Button>

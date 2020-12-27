@@ -49,13 +49,17 @@ export const ResultsPage: FC = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await fetch("/generate-song-map", {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          purple: "abc123",
-        },
-      });
+      const res = await fetch(
+        "https://cors-anywhere.herokuapp.com/https://mr-smg-app.herokuapp.com/generate-song-map",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            PURPLE: "abc123",
+          },
+        }
+      );
       const json = await res.json();
       setSongInfo(json.data);
     };
@@ -295,7 +299,7 @@ const GenerateButton = styled.button`
   width: 160px;
   height: 36px;
   font-family: "Poppins", sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   background: radial-gradient(50% 50% at 50% 50%, #27354b 0%, #1c232e 100%);
   border: none;
