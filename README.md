@@ -2,7 +2,7 @@
 
 A web app for music creators.
 
-[Try it out here](https://mixreferences.com)
+[Try it out here](https://5fe7d7e6b6d01b28a36fa8db--clever-boyd-fe32a5.netlify.app/)
 
 <img src="./src/assets/screenshot/smg-preview.gif" style="width: 300px"/>
 
