@@ -75,10 +75,10 @@ export const QuestionButton: FC<Contact> = ({ setIsContactOpen }) => {
                 <CounterBackground>
                   <CounterNumber>{numberShortner(count)}</CounterNumber>
                 </CounterBackground>
-                <p>Maps generated</p>
+                <p>Generated today</p>
               </CounterContainer>
               <div>
-                <Possibilities>Over 1.6 billion unique outcome</Possibilities>
+                <Possibilities>Over 1.6 billion unique outcomes</Possibilities>
               </div>
             </BottomMenu>
           </Dropdown>
