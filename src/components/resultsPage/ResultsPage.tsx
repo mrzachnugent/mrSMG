@@ -50,7 +50,7 @@ export const ResultsPage: FC = () => {
   useEffect(() => {
     const getData = async () => {
       const res = await fetch(
-        "https://cors-anywhere.herokuapp.com/https://mr-smg-app.herokuapp.com/generate-song-map",
+        "https://mr-smg-app.herokuapp.com/generate-song-map",
         {
           method: "GET",
           headers: {
