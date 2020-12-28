@@ -56,7 +56,6 @@ export const ResultsPage: FC = () => {
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
-            PURPLE: "abc123",
           },
         }
       );
