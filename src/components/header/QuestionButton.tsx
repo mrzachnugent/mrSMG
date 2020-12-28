@@ -13,7 +13,7 @@ export const QuestionButton: FC<Contact> = ({ setIsContactOpen }) => {
   useEffect(() => {
     const getData = async () => {
       const res = await fetch(
-        "https://cors-anywhere.herokuapp.com/https://mr-smg-app.herokuapp.com/generate-song-map/count",
+        "https://mr-smg-app.herokuapp.com/generate-song-map/count",
         {
           method: "GET",
           headers: {
