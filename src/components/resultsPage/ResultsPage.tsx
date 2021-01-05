@@ -14,6 +14,7 @@ import { Piano } from "./Piano";
 import { Structure } from "./Structure";
 import { jsPDF } from "jspdf";
 import { MainButton } from "../MainButton";
+import { FirstTimeLoader } from "../FirstTimeLoader";
 
 interface Scale {
   name: string;
@@ -90,7 +91,7 @@ export const ResultsPage: FC = () => {
   return (
     <Wrapper>
       {isLoading && <Loader />}
-      {songInfo && (
+      {songInfo ? (
         <Main>
           <PageTitle>
             Song Map{" "}
@@ -184,6 +185,8 @@ export const ResultsPage: FC = () => {
             </GenerateButton>
           </ButtonsWrapper>
         </Main>
+      ) : (
+        <FirstTimeLoader />
       )}
     </Wrapper>
   );
